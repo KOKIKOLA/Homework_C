@@ -45,11 +45,19 @@ void Zadacha13()
 {
     Console.WriteLine("Введите число: ");
     int number = Convert.ToInt32(Console.ReadLine());
-        if(number > 99) 
+    number = Math.Abs(number);
+    if(number < 100) 
         {
-            Console.WriteLine(number / 100 % 10);
+            Console.WriteLine("Нет третьего числа");
         }
-        else Console.WriteLine("Нет третьего числа");
+    else
+    {
+        while (number > 999)
+        {
+            number /= 10;
+        }
+        Console.WriteLine(number%10);
+    }
 }
 void Zadacha15()
 {
@@ -57,31 +65,31 @@ void Zadacha15()
     int number = Convert.ToInt32(Console.ReadLine());
         if (number == 1)
         {
-            Console.WriteLine("Нет");
+            Console.WriteLine("Будни");
         }
         else if (number == 2)
         {
-            Console.WriteLine("Нет");
+            Console.WriteLine("Будни");
         }
         else if (number == 3)
         {
-            Console.WriteLine("Нет");
+            Console.WriteLine("Будни");
         }
         else if (number == 4)
         {
-            Console.WriteLine("Нет");
+            Console.WriteLine("Будни");
         }
         else if (number == 5)
         {
-            Console.WriteLine("Нет");
+            Console.WriteLine("Будни");
         }
         else if (number == 6)
         {
-            Console.WriteLine("Да");
+            Console.WriteLine("Выходной");
         }
         else if (number == 7)
         {
-            Console.WriteLine("Да");
+            Console.WriteLine("Выходной");
         }
         else
         {
