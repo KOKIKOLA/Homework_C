@@ -258,7 +258,8 @@ void Zadacha38()
     Random random = new Random();
     for (int i = 0; i < size; i++)
     {
-        array[i] = Math.Round(random.NextDouble() * 100 - 50, 2);
+        array[i] = Convert.ToDouble(random.Next(100, 1000))/10; // изменяя 10 на 100, можно увеличить количество цифр после запятой.
+        //array[i] = Math.Round(random.NextDouble() * 100 - 50, 2); это специальное действие для получения чисел double, как второй вариант, а предыдущее делит целочисленное на целочисленное
     }
     for (int i = 0; i < size; i++)
     {
@@ -312,5 +313,208 @@ void Zadacha43()
         Console.WriteLine($"Прямые пересекаются в точке А({x}, {y2})");
     }
 }
+void Zadacha47()
+{
+// 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами, округлёнными до одного знака.
+int rows = 4;
+int columns = 4;
+double[,] array = new double[rows, columns];
+FillArrayDouble(array);
+PrintArrayDouble(array);
+}
+void FillArrayDouble(double[,] array, int startNumber = -100, int finishNumber = 9)
+{
+    finishNumber++;
+    Random random = new Random();
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            array[i, j] = Convert.ToDouble(random.Next(1000, 10000))/10;
+        }
+    }
+}
+void PrintArrayDouble(double[,] array)
+{
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            Console.Write(array[i, j] +"  ");
+        }
+        Console.WriteLine();
+    }
+}
+void Zadacha50()
+{
+// 50. Напишите программу, которая на вход принимает индексы элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+    Console.WriteLine("Введите размер массива:");
+    int rows = Convert.ToInt32(Console.ReadLine());
+    int columns = rows;
+    int[,] array = new int[rows, columns];
+    FillArray(array);
+    PrintArray(array);
+    Console.WriteLine("Введите искомую строку:");
+    int row = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Введите искомый столбец:");
+    int column = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine($"Элемент массива: {array[row, column]}");
+}
+void Zadacha52()
+{
+// 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+    int rows = 5;
+    int columns = 5;
+    int[,] array = new int[rows, columns];
+    FillArray(array);
+    PrintArray(array);
+    Console.WriteLine();
+    double arifm = 0;
+    for (int j = 0; j < rows; j++)
+    {
+        for (int i = 0; i < columns; i++)
+        {
+            arifm += array[i, j];
+        }
+        Console.WriteLine($"Результат {j+1} столбца = {arifm/rows}");
+        arifm = 0;
+    }
+}
+void Zadacha54()
+{
+// 54. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+    int rows = 5;
+    int columns = 6;
+    int[,] array = new int[rows, columns];
+    FillArray(array);
+    PrintArray(array);
+    Sort(array);
+    Console.WriteLine();
+    Console.WriteLine("Отсортированный массив");
+    PrintArray(array);
+}
+void Sort(int[,] array)
+{
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = columns - 1; j > 0; j--)
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (array[i, k] < array[i, k+1])
+                {
+                    int temp = array[i, k];
+                    array[i, k] = array[i, k+1];
+                    array[i, k+1] = temp;
+                }
+            }
+        }
+    }
+}
+void FillArray(int[,] array, int startNumber = 1, int finishNumber = 9)
+{
+    finishNumber++;
+    Random random = new Random();
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            array[i, j] = random.Next(startNumber, finishNumber);
+        }
+    }
+}
+void PrintArray(int[,] array)
+{
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            Console.Write(array[i, j] +"\t");
+        }
+        Console.WriteLine();
+    }
+}
+void Zadacha56()
+{
+// 56. Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+    int rows = 5;
+    int columns = 6;
+    int[,] array = new int[rows, columns];
+    FillArray(array);
+    PrintArray(array);
+    int indexMin = 0;
+    int sumMin = RowSum(array, 0);
+    Console.WriteLine();
+    Console.WriteLine($"В строке {indexMin+1} сумма сумма элементов равна {sumMin}");
+    for (int i = 1; i < rows; i++)
+    {
+        int sum = RowSum(array, i);
+        Console.WriteLine($"В строке {i+1} сумма сумма элементов равна {sum}");
+        if (sum < sumMin)
+        {
+            sumMin = sum;
+            indexMin = i;
+        }
+    }
+    Console.WriteLine();
+    Console.WriteLine($"Минимальная сумма равна {sumMin} и находится в строке {indexMin+1}");
+}
+int RowSum(int[,] array, int i)
+{
+    int sum = 0;
+    int columns = array.GetLength(1);
+    for (int j = 0; j < columns; j++)
+    {
+        sum += array[i, j];
+    }
+    return sum;
+}
+void Zadacha58()
+{
+// 58. Заполните спирально массив 4 на 4 числами от 1 до 16.
+    int rows = 6;
+    int columns = 6;
+    int[,] array = new int[rows, columns];
+    int row = 0;
+    int column = 0;
+    int changeRow = 0;
+    int changeColumn = 1;
+    int steps = columns;
+    int turn = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[row, column] = i + 1;
+        steps--;
+        if (steps == 0)
+        {
+            if (turn % 2 == 0)
+            {
+                steps = rows - 1 - turn/2;
+            }
+            else
+            {
+                steps = columns - 1 - turn/2;
+            }
+            //steps = columns * (turn%2) + rows * ((turn+1) % 2) - 1 - turn/2; это повтор условия только в виде математической формулы.
+            int temp = changeRow;
+            changeRow = changeColumn;
+            changeColumn = -temp;
+            turn++;
+        }
+        row += changeRow;
+        column += changeColumn;
+    }
+    PrintArray(array);
+}
 
-
+// 
