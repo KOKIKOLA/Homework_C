@@ -552,6 +552,48 @@ void Zadacha66()
         return Recursion(M, N, sum);
     }
 }
-
+void Zadacha68()
+{
 //68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
-
+    Console.Write("Введите M: ");
+    int n = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите N: ");
+    int m = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine(A(n, m));
+    int A(int n, int m)
+    {
+    if (n == 0)
+        return m + 1;
+    else
+        if ((n != 0) && (m == 0))
+        return A(n - 1, 1);
+        else
+        return A(n - 1, A(n, m - 1));
+    }
+}
+// Zadacha2();
+// Zadacha4();
+// Zadacha6();
+// Zadacha8();
+// Zadacha13();
+// Zadacha15();
+// Zadacha19();
+// Zadacha21();
+// Zadacha23();
+// Zadacha25();
+// Zadacha27();
+// Zadacha29();
+// Zadacha34();
+// Zadacha36();
+// Zadacha38();
+// Zadacha41();
+// Zadacha43();
+// Zadacha47();
+// Zadacha50();
+// Zadacha52();
+// Zadacha54();
+// Zadacha56();
+// Zadacha58();
+// Zadacha64();
+// Zadacha66();
+Zadacha68();
