@@ -516,5 +516,42 @@ void Zadacha58()
     }
     PrintArray(array);
 }
+void Zadacha64()
+{
+// 64: Задайте значения M и N. Напишите рекурсивный метод, который выведет все натуральные числа кратные 3-ём в промежутке от M до N.
+    Console.Write("Введите M: ");
+    int M = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите N: ");
+    int N = Convert.ToInt32(Console.ReadLine());
+    RecursionK3(M, N);
+    Console.Write("\b\b.");
+    void RecursionK3(int M, int N)
+    {
+        if (M % 3 == 0)
+        {
+            Console.Write(M + ", ");
+        }
+        M++;
+        if (M > N) return;
+        RecursionK3(M, N);
+    }
+}
+void Zadacha66()
+{
+//66: Задайте значения M и N. Напишите рекурсивный метод, который найдёт сумму натуральных элементов в промежутке от M до N.
+    Console.Write("Введите M: ");
+    int M = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите N: ");
+    int N = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine(Recursion(M, N));
+    int Recursion(int M, int N, int sum = 0)
+    {
+        if (M > N) return sum;
+        sum += M;
+        M++;
+        return Recursion(M, N, sum);
+    }
+}
 
-// 
+//68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+
